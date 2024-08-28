@@ -1,0 +1,40 @@
+﻿spring:
+  application:
+    name: customer
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        #命名空间
+        namespace: c25ca3f9-9907-468b-ae73-2da5a7daa0e8
+        #分组
+        group: DEFAULT_GROUP
+        server-addr: mycomputer.com:8848
+        username: nacos
+        password: nacos
+        file-extension: yml
+        shared-configs:
+          - data-id: nacos.yml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: openfeign.yml
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: common.yml
+            group: DEFAULT_GROUP
+            refresh: true
+        extension-configs:
+          - data-id: actuator.yml
+            group: DEFAULT_GROUP
+            refresh: true
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: 127.0.0.1:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mydatabase
+
+
+
